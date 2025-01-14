@@ -30,6 +30,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Test Stage"
+                    ls build/
                 '''
             }
         }
