@@ -86,9 +86,15 @@ pipeline {
                     netlify --version
                     echo "Deploying to staging. Site ID: $NETLIFY_SITE_ID"
                     netlify status
-                    netlify deploy --dir=build
+                    netlify deploy --dir=build --prod
                 '''
             }
+        }
+
+        stage('Approval') {
+            steps {
+                input message: 'Do you wish to deploy?', ok: 'Yes, I am sure!'
+            }            
         }
 
         stage('Deploy Prod') {
